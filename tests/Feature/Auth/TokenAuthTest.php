@@ -19,7 +19,10 @@ it('can not be requested without credentials', function () {
     $response = $this->post('/api/auth');
 
     expect($response->json('errors'))
-        ->toEqual(['email' => ['The email must be a valid email address.'], 'password' => ['The password must be at least 8 characters.']]);
+        ->toEqual([
+            'email' => ['The email must be a valid email address.'],
+             'password' => ['The password must be at least 8 characters.'
+            ]]);
 })->throws('Illuminate\Validation\ValidationException');
 
 it('can be logout', function () {
