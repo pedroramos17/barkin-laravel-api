@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AuthRequest;
@@ -13,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /** @throws ValidationException */
-    public function auth(AuthRequest $request): JsonResponse {
+    public function login(AuthRequest $request): JsonResponse {
         $user = User::where('email', $request->email)->first();
         if(! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
