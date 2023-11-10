@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Return token
-Route::post('/login', [AuthenticatedController::class, 'login']);
-Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::middleware('guest')->group(function () {
+    Route::post('/login', [AuthenticatedController::class, 'login']);
+    Route::post('/register', [RegisteredUserController::class, 'store']);
+});
 
 Route::middleware('auth:sanctum')->group(function () {
-   Route::post('/logout', [AuthenticatedController::class, 'logout']); 
+    Route::post('/logout', [AuthenticatedController::class, 'logout']);
 });
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
