@@ -19,6 +19,7 @@ class VehicleFactory extends Factory
         return [
             'brand' => fake()->randomElement(['Ford', 'Fiat', 'Chevrolet', 'Mercedes', 'Toyota']),
             'model' => fake()->randomElement(['Ford', 'Fiat', 'Chevrolet', 'Mercedes', 'Toyota']),
+            'year' => fake()->year(),
             'color' => fake()->colorName(),
             'plate' => fake()->unique()->bothify('???##?##'),
             'driver_id' => \App\Models\Driver::factory(),
