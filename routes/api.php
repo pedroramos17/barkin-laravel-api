@@ -24,6 +24,9 @@ Route::post('/login', [AuthenticatedController::class, 'login']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function () {
+        return auth()->user();
+    });
     Route::post('/logout', [AuthenticatedController::class, 'logout']);
     Route::apiResources([
         'drivers' => DriverController::class,
